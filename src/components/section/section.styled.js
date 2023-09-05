@@ -2,7 +2,11 @@ import styled from 'styled-components';
 
 export const StyledSection = styled('ul')(() => {
   return {
-    margin: '400px auto 0px auto',
+    // margin: '400px auto 0px auto',
+    position: 'absolute',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
     padding: 50,
     backgroundColor: 'rgba(133, 228, 196, 0.247)',
     width: 500,
