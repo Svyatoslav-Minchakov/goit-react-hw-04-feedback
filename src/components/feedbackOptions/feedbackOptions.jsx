@@ -1,17 +1,26 @@
 import { ButtonsBox, Buttons } from './feedbackOptions.styled';
 
-export const FeedbackOptions = props => {
+export const FeedbackOptions = ({ options, feedbackClick }) => {
   return (
     <ButtonsBox>
-      <Buttons onClick={props.feedbackClick} type="button">
+      {options.map(option => (
+        <Buttons
+          key={option}
+          onClick={() => feedbackClick(option)}
+          type="button"
+        >
+          {option}
+        </Buttons>
+      ))}
+      {/* <Buttons onClick={feedbackClick} type="button">
         Good
       </Buttons>
-      <Buttons onClick={props.feedbackClick} type="button">
+      <Buttons onClick={feedbackClick} type="button">
         Neutral
       </Buttons>
-      <Buttons onClick={props.feedbackClick} type="button">
+      <Buttons onClick={feedbackClick} type="button">
         Bad
-      </Buttons>
+      </Buttons> */}
     </ButtonsBox>
   );
 };

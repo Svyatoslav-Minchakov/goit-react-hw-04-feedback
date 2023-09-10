@@ -15,6 +15,7 @@ export const Buttons = styled('button')(() => {
     borderRadius: 4,
     cursor: 'pointer',
     transition: 'background-color 200ms linear',
+    textTransform: 'capitalize',
 
     '&:hover': {
       backgroundColor: 'rgba(66, 131, 109, 0.911)',

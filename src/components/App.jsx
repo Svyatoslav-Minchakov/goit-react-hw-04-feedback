@@ -11,10 +11,9 @@ export class App extends Component {
     bad: 0,
   };
 
-  feedbackClick = event => {
-    const buttonName = event.target.textContent.toLowerCase();
+  feedbackClick = option => {
     this.setState(prevState => ({
-      [buttonName]: prevState[buttonName] + 1,
+      [option]: prevState[option] + 1,
     }));
   };
 
@@ -33,7 +32,10 @@ export class App extends Component {
   render() {
     return (
       <Section>
-        <FeedbackOptions feedbackClick={this.feedbackClick} />
+        <FeedbackOptions
+          options={Object.keys(this.state)}
+          feedbackClick={this.feedbackClick}
+        />
 
         {this.totalClickCount() > 0 ? (
           <Statistics
