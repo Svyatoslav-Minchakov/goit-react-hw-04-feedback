@@ -12,15 +12,6 @@ export const FeedbackOptions = ({ options, feedbackClick }) => {
           {option}
         </Buttons>
       ))}
-      {/* <Buttons onClick={feedbackClick} type="button">
-        Good
-      </Buttons>
-      <Buttons onClick={feedbackClick} type="button">
-        Neutral
-      </Buttons>
-      <Buttons onClick={feedbackClick} type="button">
-        Bad
-      </Buttons> */}
     </ButtonsBox>
   );
 };
