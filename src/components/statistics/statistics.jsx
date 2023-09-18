@@ -1,5 +1,3 @@
-// import React from 'react';
-
 import {
   StatisticsBox,
   StatisticsTitle,

@@ -1,54 +1,50 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { Statistics } from './statistics/statistics';
 import { FeedbackOptions } from './feedbackOptions/feedbackOptions';
 import { Section } from './section/section';
 import { Notification } from './notification/notification';
 
-export class App extends Component {
-  state = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
+export const App = () => {
+  const [good, setGood] = useState(0);
+  const [neutral, setNeutral] = useState(0);
+  const [bad, setBad] = useState(0);
+
+  const feedbackClick = option => {
+    if (option === 'good') setGood(prev => prev + 1);
+    if (option === 'neutral') setNeutral(prev => prev + 1);
+    if (option === 'bad') setBad(prev => prev + 1);
   };
 
-  feedbackClick = option => {
-    this.setState(prevState => ({
-      [option]: prevState[option] + 1,
-    }));
+  const totalClickCount = () => {
+    return good + neutral + bad;
   };
 
-  totalClickCount = () => {
-    return this.state.good + this.state.neutral + this.state.bad;
-  };
-
-  positiveFeedbackCount = () => {
-    const total = this.totalClickCount();
+  const positiveFeedbackCount = () => {
+    const total = totalClickCount();
     if (total === 0) {
       return 0;
     }
-    return Math.round((this.state.good / total) * 100);
+    return Math.round((good / total) * 100);
   };
 
-  render() {
-    return (
-      <Section>
-        <FeedbackOptions
-          options={Object.keys(this.state)}
-          feedbackClick={this.feedbackClick}
-        />
+  return (
+    <Section>
+      <FeedbackOptions
+        options={['good', 'neutral', 'bad']}
+        feedbackClick={feedbackClick}
+      />
 
-        {this.totalClickCount() > 0 ? (
-          <Statistics
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
-            total={this.totalClickCount()}
-            positivePercentage={this.positiveFeedbackCount()}
-          />
-        ) : (
-          <Notification />
-        )}
-      </Section>
-    );
-  }
-}
+      {totalClickCount() > 0 ? (
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={totalClickCount()}
+          positivePercentage={positiveFeedbackCount()}
+        />
+      ) : (
+        <Notification />
+      )}
+    </Section>
+  );
+};
